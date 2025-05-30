@@ -13,19 +13,28 @@ To write a C Program to find area of rectangle using pointer.
 
 ## PROGRAM
 ```
-#include<stdio.h>
-int main()
-{
-    int length,width;
-    int *len=&length,*wid=&width;
-    scanf("%d%d",len,wid);
-    float area=(*len)*(*wid);
-    printf("Area of rectangle = %f sq. units ",area);
+#include <stdio.h>
+
+int main() {
+    float length, width, area;
+    float *ptrLength = &length, *ptrWidth = &width, *ptrArea = &area;
+
+    printf("Enter length of rectangle: ");
+    scanf("%f", ptrLength);
+
+    printf("Enter width of rectangle: ");
+    scanf("%f", ptrWidth);
+
+    *ptrArea = (*ptrLength) * (*ptrWidth);
+
+    printf("Area of rectangle: %.2f\n", *ptrArea);
+
     return 0;
 }
 ```
 ## OUTPUT
-![Screenshot 2025-05-05 142349](https://github.com/user-attachments/assets/5c588a5f-9418-4ac0-aac6-f5f40b34fb54)
+![image](https://github.com/user-attachments/assets/e8a78654-fda0-419c-853a-f0c8f00d35b1)
+
 
 
 ## RESULT
@@ -102,28 +111,31 @@ To write a C Program to store the student information and display it using struc
 ## PROGRAM
 ```
 #include <stdio.h>
-struct Student {
+
+struct Employee 
+{
+    int id;
     char name[50];
-    int rollNumber;
-    float marks;
+    float age;
 };
-int main() {
-    struct Student student;
-    
-    scanf("%s", student.name);
-    scanf("%d", &student.rollNumber);
-    scanf("%f", &student.marks); 
-    printf("Displaying Information:\n");
-    printf("Name: %s\n", student.name);
-    printf("Roll number: %d\n", student.rollNumber);
-    printf("Marks: %.1f\n", student.marks); 
+
+int main() 
+{
+    struct Employee employees;
+    scanf("%d", &employees.id);
+    scanf(" %s", employees.name);
+    scanf("%f", &employees.age);
+    printf("Rollno is: %d\nName is: %s\nPercentage is: %.2f\n", employees.id, employees.name, employees.age);
+  
+
     return 0;
 }
 ```
 
 
 ## OUTPUT
-![Screenshot 2025-05-05 142554](https://github.com/user-attachments/assets/4cee0769-8feb-4d74-b935-c732e3bd60b5)
+![image](https://github.com/user-attachments/assets/f884b403-7769-4d42-bb78-50ceca9dfe3f)
+
 
 
 ## RESULT
@@ -149,38 +161,57 @@ To write a C Program to read and store the data of 3 employees and calculate the
 
 ## PROGRAM
 ```
+#include <stdio.h>
 
-#include<stdio.h>
-struct employee
-{
-    int eno;
-    char dept[20];
-    float basicPay;
-    float da;
+struct Employee {
+    char name[50];
+    float basicSalary;
     float hra;
+    float da;
     float grossSalary;
 };
-int main()
-{
-    struct employee emp[3];
-    for(int i=0;i<3;i++)
-    {
-        scanf("%d %s %f",&emp[i].eno,emp[i].dept,&emp[i].basicPay);
-        emp[i].da=emp[i].basicPay*0.10;
-        emp[i].hra=emp[i].basicPay*0.30;
-        emp[i].grossSalary=emp[i].basicPay+emp[i].da+emp[i].hra;
+
+int main() {
+    struct Employee emp[3];
+
+    for (int i = 0; i < 3; i++) {
+        printf("Enter details for Employee %d:\n", i + 1);
+        
+        printf("Enter Name: ");
+        scanf("%s", emp[i].name);
+        
+        printf("Enter Basic Salary: ");
+        scanf("%f", &emp[i].basicSalary);
+        
+        printf("Enter HRA: ");
+        scanf("%f", &emp[i].hra);
+        
+        printf("Enter DA: ");
+        scanf("%f", &emp[i].da);
+
+        emp[i].grossSalary = emp[i].basicSalary + emp[i].hra + emp[i].da;
+        printf("\n");
     }
-    printf("Details of the Employee:\n");
-    for(int i=0;i<3;i++)
-    {
-        printf("%d %s %.0f %.0f %.0f %.2f\n",emp[i].eno,emp[i].dept,emp[i].basicPay,emp[i].da,emp[i].hra,emp[i].grossSalary);
+
+    printf("Employee Details and Gross Salary:\n");
+    for (int i = 0; i < 3; i++) {
+        printf("Employee %d\n", i + 1);
+        printf("Name: %s\n", emp[i].name);
+        printf("Basic Salary: %.2f\n", emp[i].basicSalary);
+        printf("HRA: %.2f\n", emp[i].hra);
+        printf("DA: %.2f\n", emp[i].da);
+        printf("Gross Salary: %.2f\n", emp[i].grossSalary);
+        printf("\n");
     }
+
+    return 0;
 }
 ```
 
 
  ## OUTPUT
- ![Screenshot 2025-05-05 142640](https://github.com/user-attachments/assets/ff3df442-7fe6-4556-8e5c-ac7472c0e08e)
+ ![image](https://github.com/user-attachments/assets/5ee2b39b-fce6-4d58-8cdf-bc28ab7a3571)
+
 
 ## RESULT
 
@@ -223,44 +254,35 @@ Step 8: End the program.
 ## PROGRAM
 ```
 
-
 #include <stdio.h>
 
-struct student
-{
-    char name[10];
-    int rollno;         
-    int subject[5];     
-    int total;         
-    float average;      
+struct Student {
+    char name[50];
+    int marks[5];
+    float total;
+    float average;
 };
 
 int main() {
-    struct student s[2];  
-    int i, j;
-    for(i = 0; i < 2; i++) {
-        printf("Enter details for student %d\n", i + 1);
-        printf("Enter name: ");
-        scanf("%s", s[i].name);
-        printf("Enter roll number: ");
-        scanf("%d", &s[i].rollno);
-        printf("Enter marks for 5 subjects: ");
-        for(j = 0; j < 5; j++) {
-            scanf("%d", &s[i].subject[j]);
-        }
-        s[i].total = 0;
-        for(j = 0; j < 5; j++) {
-            s[i].total += s[i].subject[j];
-        }
-        s[i].average = s[i].total / 5.0;
-        if(i == 0) s[i].total = 374;
-        if(i == 1) s[i].total = 383; 
+    struct Student student;
+    int sum = 0;
+
+    printf("Enter student's name: ");
+    scanf("%s", student.name);
+
+    printf("Enter marks for 5 subjects:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("Subject %d: ", i + 1);
+        scanf("%d", &student.marks[i]);
+        sum += student.marks[i];
     }
-    for(i = 0; i < 2; i++) {
-        printf("\nStudent %d:\n", i + 1);
-        printf("Total marks: %d\n", s[i].total);
-        printf("Average marks: %.2f\n", s[i].average);
-    }
+
+    student.total = sum;
+    student.average = sum / 5.0;
+
+    printf("\nStudent Name: %s\n", student.name);
+    printf("Total Marks: %.2f\n", student.total);
+    printf("Average Marks: %.2f\n", student.average);
 
     return 0;
 }
@@ -268,7 +290,9 @@ int main() {
 
 
 ## OUTPUT
-![Screenshot 2025-05-05 142740](https://github.com/user-attachments/assets/75de495e-75d8-4009-ba56-073b57e10853)
+![image](https://github.com/user-attachments/assets/303656ec-2e92-4c42-8e83-d66b360cc9af)
+
+
 
 
 ## RESULT
