@@ -112,24 +112,28 @@ To write a C Program to store the student information and display it using struc
 ```
 #include <stdio.h>
 
-struct Employee 
+struct Student 
 {
-    int id;
     char name[50];
-    float age;
+    int rollno;
+    float marks;
 };
 
 int main() 
 {
-    struct Employee employees;
-    scanf("%d", &employees.id);
-    scanf(" %s", employees.name);
-    scanf("%f", &employees.age);
-    printf("Rollno is: %d\nName is: %s\nPercentage is: %.2f\n", employees.id, employees.name, employees.age);
-  
+    struct Student s;
+    scanf("%s", s.name);
+    scanf("%d", &s.rollno);
+    scanf("%f", &s.marks);
+
+    printf("Displaying Information:\n");
+    printf("Name: %s\n", s.name);
+    printf("Roll number: %d\n", s.rollno);
+    printf("Marks: %.1f\n", s.marks);
 
     return 0;
 }
+
 ```
 
 
